@@ -35,8 +35,9 @@ def page_info(key_world, language, page):
         repo.author = repo_html.xpath('.//h3/a/@href')[0].split('/')[1]
         # text属性只包含了当前节点的text，而没有包含子节点的，因此需要使用text_content()方法
         # summary 并非必定存在字段，因此需要非空判断
-        if repo_html.xpath('.//p[contains(@class,"d-inline-block")]'):
-            repo.summary = repo_html.xpath('.//p[contains(@class,"d-inline-block")]')[0].text_content().strip()
+        summary = repo_html.xpath('.//p[contains(@class,"d-inline-block")]')
+        if summary:
+            repo.summary = summary[0].text_content().strip()
         # 由于标签包含许多空格以及\n，需要去除
         repo.tag_list = list(map(lambda x: x.strip(), repo_html.xpath('.//a[contains(@class,"topic-tag")]/text()')))
         repo.license = repo_html.xpath('.//div[@class="d-flex flex-wrap"]//p[position()=1]')[0].text.strip()
