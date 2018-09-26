@@ -19,7 +19,7 @@ class GithubRepo:
 
 keyWorld = 'swift'
 language = 'Swift'
-URL = ('https://github.com/search?l=%s&o=desc&q=%s&s=stars&type=Repositories' % (language, keyWorld))
+URL = ('https://github.com/search?l=%s&o=desc&q=%s&s=stars&type=Repositories&p=5' % (language, keyWorld))
 
 session = requests.session()
 response = session.get(URL)
